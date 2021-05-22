@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 
-namespace JuegoSnake.clases
+namespace culebrita.clases
 {
     class SnakeQueue
     {
@@ -25,13 +25,13 @@ namespace JuegoSnake.clases
 
         private static void DibujaPantalla(Size size)
         {
-            Console.Title = "Culebrita comelona";
+            Console.Title = "CULEBRITA COMELONA";
             Console.WindowHeight = size.Height + 2;
             Console.WindowWidth = size.Width + 2;
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
             Console.CursorVisible = false;
-            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.DarkGray;
             Console.Clear();
 
             Console.BackgroundColor = ConsoleColor.Black;
@@ -75,8 +75,6 @@ namespace JuegoSnake.clases
             return direccionAcutal;
         }
 
-
-
         private static Point ObtieneSiguienteDireccion(Direction direction, Point currentPosition)
         {
             Point siguienteDireccion = new Point(currentPosition.X, currentPosition.Y);
@@ -98,8 +96,6 @@ namespace JuegoSnake.clases
             return siguienteDireccion;
         }
 
-
-
         private static bool MoverLaCulebrita(Queue<Point> culebra, Point posiciónObjetivo,
             int longitudCulebra, Size screenSize)
         {
@@ -115,7 +111,7 @@ namespace JuegoSnake.clases
                 return false;
             }
 
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Gray;
             Console.SetCursorPosition(lastPoint.X + 1, lastPoint.Y + 1);
             Console.WriteLine(" ");
 
@@ -163,12 +159,11 @@ namespace JuegoSnake.clases
         }
 
 
-        private static void MuestraPunteoK(int punteo, int vidas)
+        private static void PunteosYvidas(int punteo, int vidas)
         {
-
             Archivo archivo = new Archivo();
-            Console.BackgroundColor = ConsoleColor.Gray;
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(1, 0);
             Console.Write($"Puntuacion: {punteo.ToString("00000000")}");
             Console.SetCursorPosition(25, 0);
@@ -199,7 +194,7 @@ namespace JuegoSnake.clases
             var dirección = Direction.Derecha; //modificar estos valores y ver qué pasa
 
             DibujaPantalla(tamañoPantalla);
-            MuestraPunteoK(punteo, vidas);
+            PunteosYvidas(punteo, vidas);
 
             while (vidas != 0)
             {
@@ -216,7 +211,7 @@ namespace JuegoSnake.clases
                         posiciónComida = Point.Empty;
                         longitudCulebra++; //modificar estos valores y ver qué pasa
                         punteo += 10; //modificar estos valores y ver qué pasa
-                        MuestraPunteoK(punteo, vidas);
+                        PunteosYvidas(punteo, vidas);
                         velocidad -= 10;
                     }
 
@@ -233,11 +228,11 @@ namespace JuegoSnake.clases
                     if (vidas == 0)
                     {
                         Console.SetCursorPosition(tamañoPantalla.Width / 2 - 4, tamañoPantalla.Height / 2);
-                        Console.Write($"¡GAME OVER!");
+                        Console.Write($"¡FIN DEL JUEGO!");
                     }
                     else
                     {
-                        Console.Write($"Haz perdido una vida, te quedan {vidas}");
+                        Console.Write($"Te quedan {vidas} vidas");
                     }
                     
                     Thread.Sleep(2000);

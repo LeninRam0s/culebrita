@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace JuegoSnake.clases.ColaLista
+namespace culebrita.clases.ColaLista
 {
     class ColaConLista
     {

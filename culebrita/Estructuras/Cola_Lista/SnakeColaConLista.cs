@@ -4,9 +4,9 @@ using System.Text;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
-using JuegoSnake.clases.ColaLista;
+using culebrita.clases.ColaLista;
 
-namespace JuegoSnake.clases.Cola_Lista
+namespace culebrita.clases.Cola_Lista
 {
     class SnakeColaConLista
     {

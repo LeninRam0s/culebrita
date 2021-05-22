@@ -5,7 +5,7 @@ using System.Drawing;
 using System.Linq;
 using System.Threading;
 
-namespace JuegoSnake.clases.ColaArreglo
+namespace culebrita.clases.ColaArreglo
 {
     class SnakeConColaLineal
     {

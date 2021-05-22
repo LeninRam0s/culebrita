@@ -1,21 +1,21 @@
-﻿using JuegoSnake.clases.ColaLista;
+﻿using culebrita.clases.ColaLista;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace JuegoSnake.clases.BicolaEnlazada
+namespace culebrita.clases.BicolaEnlazada
 {
     class BiCola : ColaConLista
     {
         //Insertar por el final de la bicola
-        public void ponerFinal(Point elemento)
+        public void insertarFinalBiCola(Point elemento)
         {
             insertar(elemento);
         }
 
         //Insertar al frente
-        public void ponerFrente(Point elemento)
+        public void insertarFrenteBiCola(Point elemento)
         {
             Nodo a; //Variable auxiliar
             a = new Nodo(elemento);
@@ -87,20 +87,20 @@ namespace JuegoSnake.clases.BicolaEnlazada
 
         }
 
-        //Retorna si esta vacia la cola
+        //RETORNA SI LA COLA ESTA VACIA
         public bool biColaVacia()
         {
             return colaVacia();
         }
 
-        //Borrar la bicola
+        //ELIMINAR BICOLA
         public void borrarBIcola()
         {
             borrarCola();
         }
 
-        //Conteo de elementos
-        public int numElementosBicola()
+        //CUENTA ELEMENTOS
+        public int elementosBicola()
         {
             int n;
             Nodo a = frente;
@@ -116,26 +116,10 @@ namespace JuegoSnake.clases.BicolaEnlazada
                     n++;
                     a = a.siguiente;
                 }
-
             }
             return n;
         }
 
-        /*public bool Any(Point x)
-        {
-            int i = 0, cont = 0;
-            Nodo aux = frente;
-            bool flag;
-            while (aux != null)
-            {
-                Point a = (Point)aux.elemento;
-                flag = ((a.X == x.X) && (a.Y == x.Y));
-                int z = (flag == true) ? cont++ : cont + 0;
-                i++;
-            }
-            return (cont != 0) ? true : false;
-        }
-*/
         public bool Any(Point elemento)
         {
             return busquda(elemento);

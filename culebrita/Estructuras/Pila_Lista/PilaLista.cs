@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace JuegoSnake.clases.Pila_Lista
+namespace culebrita.clases.Pila_Lista
 {
     class PilaLista
     {

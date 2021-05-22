@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace JuegoSnake.clases
+namespace culebrita.clases
 {
     class Archivo
     {

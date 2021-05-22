@@ -6,10 +6,10 @@ using System.Linq;
 using System.Threading;
 
 
-namespace JuegoSnake.clases.BicolaEnlazada
+namespace culebrita.clases.BicolaEnlazada
 {
 
-    class SnakeConBicola
+    class CulebritaBiCola
     {
         private int vidas = 3;
         private int punteo = 0;
@@ -21,16 +21,16 @@ namespace JuegoSnake.clases.BicolaEnlazada
 
         private static void DibujaPantalla(Size size)
         {
-            Console.Title = "Culebrita comelona";
+            Console.Title = "Culebrita comelona - Bi Cola";
             Console.WindowHeight = size.Height + 2;
             Console.WindowWidth = size.Width + 2;
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
             Console.CursorVisible = false;
-            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;//COLOR DE BORDE
             Console.Clear();
 
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Black;//COLOR FONDO
             for (int row = 0; row < size.Height; row++)
             {
                 for (int col = 0; col < size.Width; col++)
@@ -41,18 +41,13 @@ namespace JuegoSnake.clases.BicolaEnlazada
             }
         }
 
-
-
-        private static void MuestraPunteo(int punteo)
+        private static void vistaPunteo(int punteo)
         {
-            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(1, 0);
             Console.Write($"Puntuacion: {punteo.ToString("00000000")}");
         }
-
-
-
 
         private static Direction ObtieneDireccion(Direction direccionAcutal)
         {
@@ -81,8 +76,6 @@ namespace JuegoSnake.clases.BicolaEnlazada
             return direccionAcutal;
         }
 
-
-
         private static Point ObtieneSiguienteDireccion(Direction direction, Point currentPosition)
         {
             Point siguienteDireccion = new Point(currentPosition.X, currentPosition.Y);
@@ -104,13 +97,11 @@ namespace JuegoSnake.clases.BicolaEnlazada
             return siguienteDireccion;
         }
 
-
-
         private static bool MoverLaCulebrita(BiCola culebra, Point posiciónObjetivo,
             int longitudCulebra, Size screenSize)
            
         {
-            var lastPoint = (Point) culebra.finalBicola();////////////////////////////////////////////////
+            var lastPoint = (Point) culebra.finalBicola();//IMPLEMENTACION DE ESTRUCTURA BICOLA
 
             if (lastPoint.Equals(posiciónObjetivo)) return true;
 
@@ -123,21 +114,19 @@ namespace JuegoSnake.clases.BicolaEnlazada
                 return false;
             }
 
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Gray;//COLOR CUERPO
             Console.SetCursorPosition(lastPoint.X + 1, lastPoint.Y + 1);
             Console.WriteLine(" ");
 
-            culebra.insertar(posiciónObjetivo);///////////////////////////////////////
+            culebra.insertarFinalBiCola(posiciónObjetivo);//COLOCAR LA COMIDA AL FINAL DE BICOLA
 
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = ConsoleColor.Red; //COLOR CABEZA
             Console.SetCursorPosition(posiciónObjetivo.X + 1, posiciónObjetivo.Y + 1);
             Console.Write(" ");
 
-            // Quitar cola
-            if (culebra.numElementosBicola() > longitudCulebra)////////////////////////////////////////////
+            if (culebra.elementosBicola() > longitudCulebra)//CUENTA LOS ELEMENTOS DE LA BICOLA
             {
-               
-                var removePoint = (Point) culebra.quitar();////////////////////////////////////////////////
+                var removePoint = (Point) culebra.quitarFrente();//QUITA EL ELEMENTO DE BICOLA
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(removePoint.X + 1, removePoint.Y + 1);
                 Console.Write(" ");
@@ -150,7 +139,7 @@ namespace JuegoSnake.clases.BicolaEnlazada
             
             var lugarComida = Point.Empty;
 
-            var cabezaCulebra = (Point) culebra.finalBicola();////////////////////////////////////
+            var cabezaCulebra = (Point) culebra.finalBicola();//DEVUELVE FINAL DE LA BICOLA CON EL ULTIMO DATO
             var coordenada = cabezaCulebra.X;//////////////////////////////////////////////////
 
             var rnd = new Random();
@@ -162,8 +151,8 @@ namespace JuegoSnake.clases.BicolaEnlazada
                     && Math.Abs(x - cabezaCulebra.X) + Math.Abs(y - cabezaCulebra.Y) > 8)
                 {
                     lugarComida = new Point(x, y);
-                    Console.Beep(659, 125); Console.Beep(659, 125);
-
+                    Console.Beep(659, 125);
+                    Console.Beep(659, 125);
                 }
 
             } while (lugarComida == Point.Empty);
@@ -177,38 +166,39 @@ namespace JuegoSnake.clases.BicolaEnlazada
 
         private static void MuestraPunteoK(int punteo, int vidas)
         {
-
             Archivo archivo = new Archivo();
-            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(1, 0);
             Console.Write($"Puntuacion: {punteo.ToString("00000000")}");
             Console.SetCursorPosition(25, 0);
             Console.Write($"Máximo: {archivo.mejorPunteo(punteo)}");
             Console.SetCursorPosition(40, 0);
+            
+
             switch (vidas)
             {
                 case 1:
-                    Console.Write($"{(char)3} ");
+                    Console.Write($"VIDAS: {(char)3}");
                     break;
                 case 2:
-                    Console.Write($"{(char)3} {(char)3} ");
+                    Console.Write($"VIDAS: {(char)3} {(char)3} ");
                     break;
                 case 3:
-                    Console.Write($"{(char)3} {(char)3} {(char)3}");
+                    Console.Write($"VIDAS: {(char)3} {(char)3} {(char)3}");
                     break;
             }
         }
         public void jugarConIntentos()
         {
-            var velocidad = 100; //modificar estos valores y ver qué pasa
+            var velocidad = 80; //VELOCIDAD DE LA CULEBRITA
             var posiciónComida = Point.Empty;
-            var tamañoPantalla = new Size(60, 20);
+            var tamañoPantalla = new Size(60, 20); //DIMENSION DE LA PANTALLA
             var culebrita = new BiCola();
-            var longitudCulebra = 10; //modificar estos valores y ver qué pasa
-            var posiciónActual = new Point(0, 9); //modificar estos valores y ver qué pasa
-            culebrita.insertar(posiciónActual);
-            var dirección = Direction.Derecha; //modificar estos valores y ver qué pasa
+            var longitudCulebra = 5; //LARGO DE LA CULEBRITA
+            var posiciónActual = new Point(0, 9); //ENTRADA DE LA CULEBRITA
+            culebrita.insertarFinalBiCola(posiciónActual);
+            var dirección = Direction.Derecha; //DIRECCION DE SALIDA
 
             DibujaPantalla(tamañoPantalla);
             MuestraPunteoK(punteo, vidas);
@@ -226,8 +216,8 @@ namespace JuegoSnake.clases.BicolaEnlazada
                     if (posiciónActual.Equals(posiciónComida))
                     {
                         posiciónComida = Point.Empty;
-                        longitudCulebra++; //modificar estos valores y ver qué pasa
-                        punteo += 10; //modificar estos valores y ver qué pasa
+                        longitudCulebra++; //SE INCREMENTA EL TAMA;O DE 1 EN 1
+                        punteo += 10; //CADA COMIDA AUMENTA 10 EL PUNTEO
                         MuestraPunteoK(punteo, vidas);
                         velocidad -= 10;
                     }
@@ -245,11 +235,11 @@ namespace JuegoSnake.clases.BicolaEnlazada
                     if (vidas == 0)
                     {
                         Console.SetCursorPosition(tamañoPantalla.Width / 2 - 4, tamañoPantalla.Height / 2);
-                        Console.Write($"¡GAME OVER!");
+                        Console.Write($"¡FIN DEL JUEGO!");
                     }
                     else
                     {
-                        Console.Write($"Haz perdido una vida, te quedan {vidas}");
+                        Console.Write($"Te quedan {vidas}");
                     }
 
                     Thread.Sleep(2000);
@@ -259,12 +249,7 @@ namespace JuegoSnake.clases.BicolaEnlazada
                 }
 
             }
-
-
-
         }
-
-
     }
 }
 

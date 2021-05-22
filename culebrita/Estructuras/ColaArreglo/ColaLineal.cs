@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 
-namespace JuegoSnake.clases.ColaArreglo
+namespace culebrita.clases.ColaArreglo
 {
 
     class ColaLineal
