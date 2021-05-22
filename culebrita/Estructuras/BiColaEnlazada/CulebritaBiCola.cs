@@ -239,7 +239,7 @@ namespace culebrita.clases.BicolaEnlazada
                     }
                     else
                     {
-                        Console.Write($"Te quedan {vidas}");
+                        Console.Write($"\t\tTe quedan {vidas} vidas");
                     }
 
                     Thread.Sleep(2000);

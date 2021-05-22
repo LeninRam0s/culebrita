@@ -17,19 +17,18 @@ namespace culebrita.clases.Cola_Lista
             Abajo, Izquierda, Derecha, Arriba
         }
 
-
         private static void DibujaPantalla(Size size)
         {
-            Console.Title = "Culebrita comelona";
+            Console.Title = "Culebrita comelona - Cola-Lista";
             Console.WindowHeight = size.Height + 2;
             Console.WindowWidth = size.Width + 2;
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
             Console.CursorVisible = false;
-            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;//COLOR DE BORDE
             Console.Clear();
 
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Black;//COLOR FONDO
             for (int row = 0; row < size.Height; row++)
             {
                 for (int col = 0; col < size.Width; col++)
@@ -215,6 +214,7 @@ namespace culebrita.clases.Cola_Lista
                     {
                         posiciónComida = Point.Empty;
                         longitudCulebra++; //modificar estos valores y ver qué pasa
+                       
                         punteo += 10; //modificar estos valores y ver qué pasa
                         MuestraPunteoK(punteo, vidas);
                         velocidad -= 10;
@@ -245,13 +245,7 @@ namespace culebrita.clases.Cola_Lista
 
                     jugarConIntentos();
                 }
-
             }
-
-
-
         }
-
-
     }
 }

@@ -32,12 +32,10 @@ namespace culebrita.clases.ColaLista
             a = new Nodo(elemento);
             if (colaVacia())
             {
-
                 frente = a;  
             }
             else
             {
-                
                 fin.siguiente = a;
             }
             fin = a;
@@ -49,17 +47,14 @@ namespace culebrita.clases.ColaLista
         {
             Point aux;
             if (!colaVacia())
-            {
-                
+            { 
                 aux = frente.elemento;
                 //tamaño--;
                 frente = frente.siguiente;
-                
             }
             else
             {
                 throw new Exception("Error pq la cola esta vacia");
-
             }
             return aux;
         }
@@ -96,24 +91,10 @@ namespace culebrita.clases.ColaLista
 
         }
 
-
         public int Tamaño()
         {
             return tamaño;
         }
-        /*public Queue<Point> convertirToQueue()
-        {
-            Nodo rec = frente;
-            Queue<Point> aux = new Queue<Point>();
-            
-            while(rec.siguiente != null)
-            {
-                frente = frente.siguiente;
-                aux.Enqueue(frente.elemento);
-                
-            }
-            return aux;
-        }*/
 
         public bool busquda(Point elemento)
         {

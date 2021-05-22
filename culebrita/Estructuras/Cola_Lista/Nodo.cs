@@ -10,25 +10,11 @@ namespace culebrita.clases.ColaLista
         public Point elemento;
         public Nodo siguiente;
 
-        //Constructor
+        //CONSTRUCTOR
         public Nodo(Point x)
         {
             elemento = x;
             siguiente = null;
         }
-
-        /*public int X { get; internal set; }
-        public int Y { get; internal set; }
-
-        //public int Y { get; set; }
-        //public int X { get; set; }
-
-        public struct Point
-        {
-            public int X { get; set; }
-            public int Y { get; set; }
-        }*/
-
-
     }
 }
