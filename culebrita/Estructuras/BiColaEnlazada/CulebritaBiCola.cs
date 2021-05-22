@@ -140,7 +140,7 @@ namespace culebrita.clases.BicolaEnlazada
             var lugarComida = Point.Empty;
 
             var cabezaCulebra = (Point) culebra.finalBicola();//DEVUELVE FINAL DE LA BICOLA CON EL ULTIMO DATO
-            var coordenada = cabezaCulebra.X;//////////////////////////////////////////////////
+            var coordenada = cabezaCulebra.X;//
 
             var rnd = new Random();
             do
@@ -175,17 +175,16 @@ namespace culebrita.clases.BicolaEnlazada
             Console.Write($"Máximo: {archivo.mejorPunteo(punteo)}");
             Console.SetCursorPosition(40, 0);
             
-
             switch (vidas)
             {
                 case 1:
-                    Console.Write($"VIDAS: {(char)3}");
+                    Console.Write($"Vida: {(char)3}");
                     break;
                 case 2:
-                    Console.Write($"VIDAS: {(char)3} {(char)3} ");
+                    Console.Write($"Vida: {(char)3} {(char)3} ");
                     break;
                 case 3:
-                    Console.Write($"VIDAS: {(char)3} {(char)3} {(char)3}");
+                    Console.Write($"Vida: {(char)3} {(char)3} {(char)3}");
                     break;
             }
         }
@@ -239,7 +238,7 @@ namespace culebrita.clases.BicolaEnlazada
                     }
                     else
                     {
-                        Console.Write($"Te quedan {vidas}");
+                        Console.Write($"\t\tTe quedan {vidas} vidas");
                     }
 
                     Thread.Sleep(2000);

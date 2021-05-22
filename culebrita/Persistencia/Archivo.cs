@@ -25,9 +25,9 @@ namespace culebrita.clases
         {
             if(punteoActual > punteo())
             {
-                TextWriter escribir = new StreamWriter(path);
-                escribir.WriteLine(punteoActual);
-                escribir.Close();
+                TextWriter agregr = new StreamWriter(path);
+                agregr.WriteLine(punteoActual);
+                agregr.Close();
                 return punteo();
             }
             else

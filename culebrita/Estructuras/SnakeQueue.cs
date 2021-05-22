@@ -103,7 +103,8 @@ namespace culebrita.clases
 
             if (lastPoint.Equals(posiciónObjetivo)) return true;
 
-            if (culebra.Any(x => x.Equals(posiciónObjetivo))) return false;
+            if (culebra.Any(x => x.Equals(posiciónObjetivo)))
+                return false;
 
             if (posiciónObjetivo.X < 0 || posiciónObjetivo.X >= screenSize.Width
                     || posiciónObjetivo.Y < 0 || posiciónObjetivo.Y >= screenSize.Height)

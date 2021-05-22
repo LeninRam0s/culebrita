@@ -8,13 +8,13 @@ namespace culebrita.clases.BicolaEnlazada
 {
     class BiCola : ColaConLista
     {
-        //Insertar por el final de la bicola
+        //INSERTAR FINAL
         public void insertarFinalBiCola(Point elemento)
         {
             insertar(elemento);
         }
 
-        //Insertar al frente
+        //INSERTAR AL FRENTE
         public void insertarFrenteBiCola(Point elemento)
         {
             Nodo a; //Variable auxiliar
@@ -30,7 +30,7 @@ namespace culebrita.clases.BicolaEnlazada
             }
         }
 
-        //Quitar elemento
+        //QUITAR ELEMENTO
         public Object quitarFrente()
         {
             return quitar();
@@ -76,7 +76,7 @@ namespace culebrita.clases.BicolaEnlazada
             return frenteCola();
         }
 
-        //Devolver el final de la cola el ultimo valor de la cola
+        //DEVUELVE EL FINAL DE LA COLA CON EL ELEMENTO
         public Object finalBicola()
         {
             if (colaVacia())
@@ -120,6 +120,7 @@ namespace culebrita.clases.BicolaEnlazada
             return n;
         }
 
+        //BUSCA ELEMENTOS
         public bool Any(Point elemento)
         {
             return busquda(elemento);

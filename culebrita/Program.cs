@@ -18,6 +18,9 @@ namespace culebrita
 
             Console.WriteLine("Elija con que estructura de datos, empezar a jugar");
             Console.WriteLine("\n1. BiCola\n2. Cola-Circular\n3. Cola-Lineal\n4. Cola-Lista\n5. Salir");
+            //Persistencia.ConexionMongoDB.insertarDatos(10);
+            //String pmax = Convert.ToString(Persistencia.ConexionMongoDB.punteo());
+            //Console.WriteLine(pmax);
 
             int opcion = int.Parse(Console.ReadLine());
 
