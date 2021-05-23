@@ -91,7 +91,7 @@ namespace culebrita.clases.Cola_Lista
 
 
 
-        private static bool MoverLaCulebrita(ColaConLista culebra, Point posiciónObjetivo,
+        private static bool MoverLaCulebrita(ColaLista.ClsColaLista culebra, Point posiciónObjetivo,
             int longitudCulebra, Size screenSize)
 
         {
@@ -131,7 +131,7 @@ namespace culebrita.clases.Cola_Lista
             return true;
         }
 
-        private static Point MostrarComida(Size screenSize, ColaConLista culebra)
+        private static Point MostrarComida(Size screenSize, ColaLista.ClsColaLista culebra)
         {
 
             var lugarComida = Point.Empty;
@@ -191,7 +191,7 @@ namespace culebrita.clases.Cola_Lista
             var velocidad = 100; //modificar estos valores y ver qué pasa
             var posiciónComida = Point.Empty;
             var tamañoPantalla = new Size(60, 20);
-            var culebrita = new ColaConLista();
+            var culebrita = new ColaLista.ClsColaLista();
             var longitudCulebra = 10; //modificar estos valores y ver qué pasa
             var posiciónActual = new Point(0, 9); //modificar estos valores y ver qué pasa
             culebrita.insertar(posiciónActual);

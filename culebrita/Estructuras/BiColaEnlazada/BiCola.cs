@@ -1,12 +1,10 @@
 ﻿using culebrita.clases.ColaLista;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace culebrita.clases.BicolaEnlazada
 {
-    class BiCola : ColaConLista
+    class BiCola : ColaLista.ClsColaLista
     {
         //INSERTAR FINAL
         public void insertarFinalBiCola(Point elemento)
@@ -17,7 +15,7 @@ namespace culebrita.clases.BicolaEnlazada
         //INSERTAR AL FRENTE
         public void insertarFrenteBiCola(Point elemento)
         {
-            Nodo a; //Variable auxiliar
+            Nodo a;
             a = new Nodo(elemento);
             if (colaVacia())
             {
@@ -30,33 +28,31 @@ namespace culebrita.clases.BicolaEnlazada
             }
         }
 
-        //QUITAR ELEMENTO
+        //QUITAR ELEMENTO AL FRENTE
         public Object quitarFrente()
         {
             return quitar();
         }
 
-        //Retirar elemento al final
-        //Metodo propio de bicola
-        //Es necesario hacer una iteracion de la bicola completa para llegar del nodo anterior al final, para despues enlazar y ajustar la cola
+        //QUITA EL ELEMENTO AL FINAL
         public Object quitarFinal()
         {
             Object aux;
             if (colaVacia())
             {
-                if (frente == fin)//La bicola solo tiene un nodo
+                if (frente == fin)//SOLO POSEE UN ELEMENTO
                 {
                     aux = quitar();
                 }
                 else
                 {
-                    //Como no tiene elementos vamos a iterar
+                    //NO TIENE ELEMENTOS, SE ITERA
                     Nodo a = frente;
                     while (a.siguiente != fin)
                     {
                         a = a.siguiente;
                     }
-                    //Siguiente del nodo anterior lo vamos a poner en null
+                    //EL SIGUIENTE NODO LE ASIGNAMOS VALOR NULL
                     a.siguiente = null;
                     aux = fin.elemento;
                     fin = a;
@@ -64,13 +60,12 @@ namespace culebrita.clases.BicolaEnlazada
             }
             else
             {
-                throw new Exception("La cola esta vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
             return aux;
         }
 
-        //Retorna el valor que se encuentra en el primer elemento o frente de la cola
-        //Devuelve el valor que esta en frente de la bicola
+        //DEVUELVE EL VALOR QUE ESTA EN FRENTE DE LA BICOLA
         public Object frenteCola()
         {
             return frenteCola();
@@ -81,7 +76,7 @@ namespace culebrita.clases.BicolaEnlazada
         {
             if (colaVacia())
             {
-                throw new Exception("Cola Vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
             return (fin.elemento);
 
@@ -126,6 +121,5 @@ namespace culebrita.clases.BicolaEnlazada
             return busquda(elemento);
         }
 
-    }//end class
+    }//FIN DE LA CLASE
 }
-

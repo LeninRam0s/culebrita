@@ -5,27 +5,27 @@ using System.Text;
 
 namespace culebrita.clases.ColaLista
 {
-    class ColaConLista
+    class ClsColaLista
     {
         public Nodo frente;
         public Nodo fin;
 
         public int tamaño;
 
-        //Constructor: crear la cola vacia
-        public ColaConLista()
+        //CONSTRUCTOR: INICIA LA COLA VACIA
+        public ClsColaLista()
         {
             frente = fin = null;
             tamaño = 0;
         }
 
-        //Verificar si la cola esta vacia
+        //VALIDA SI LA COLA ESTA VACIA
         public bool colaVacia()
         {
             return (frente == null);
         }
 
-        //INSERTAR: elemento por el final de la cola
+        //INSERTAR AL FINAL DE LA COLA
         public void insertar(Point elemento)
         {
             Nodo a;
@@ -42,19 +42,18 @@ namespace culebrita.clases.ColaLista
             tamaño++;
         }
 
-        //Extraer o quitar un elemento para que nos devuelva el valor antes de quitarlo
+        //EXTRAER ELEMENTO Y QUE LO DEVUELVA ANTES DE QUITARLO
         public Point quitar()
         {
             Point aux;
             if (!colaVacia())
             { 
                 aux = frente.elemento;
-                //tamaño--;
                 frente = frente.siguiente;
             }
             else
             {
-                throw new Exception("Error pq la cola esta vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
             return aux;
         }
