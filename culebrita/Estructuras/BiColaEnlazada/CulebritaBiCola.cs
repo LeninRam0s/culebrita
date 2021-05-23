@@ -222,13 +222,11 @@ namespace culebrita.clases.BicolaEnlazada
                     }
                     else
                     {
-                        //Console.SetCursorPosition(tamañoPantalla.Width / 2 - 4, tamañoPantalla.Height / 2);
                         Console.BackgroundColor = ConsoleColor.Black;
                         Console.ForegroundColor = ConsoleColor.DarkYellow;
                         Console.SetCursorPosition(12, 10);
-                        Console.Write($"¡FIN DEL JUEGO!");
+                        Console.Write($"¡FIN DEL JUEGO!\tPuntaje Optenido: {punteo}");
                     }
-
                     Thread.Sleep(2000);
                     Console.ReadKey();
 
