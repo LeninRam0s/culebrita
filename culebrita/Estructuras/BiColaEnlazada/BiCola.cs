@@ -66,9 +66,13 @@ namespace culebrita.clases.BicolaEnlazada
         }
 
         //DEVUELVE EL VALOR QUE ESTA EN FRENTE DE LA BICOLA
-        public Object frenteCola()
+        public Object frenteBiCola()
         {
-            return frenteCola();
+            if (colaVacia())
+            {
+                throw new Exception("Error porque la cola esta vacía");
+            }
+            return (frente.elemento);
         }
 
         //DEVUELVE EL FINAL DE LA COLA CON EL ELEMENTO
