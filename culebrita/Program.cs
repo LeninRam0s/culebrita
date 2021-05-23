@@ -2,7 +2,6 @@
 using culebrita.clases.BicolaEnlazada;
 using culebrita.clases.Cola_Lista;
 using culebrita.clases.ColaArreglo;
-using culebrita.clases.ColaLista;
 using System;
 using System.Collections.Generic;
 using System.Drawing;

@@ -176,7 +176,7 @@ namespace culebrita.clases.ColaArreglo
         private static void MuestraPunteoK(int punteo, int vidas)
         {
 
-            Archivo archivo = new Archivo();
+            clsArchivoTxt archivo = new clsArchivoTxt();
             Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(1, 0);

@@ -162,7 +162,7 @@ namespace culebrita.clases
 
         private static void PunteosYvidas(int punteo, int vidas)
         {
-            Archivo archivo = new Archivo();
+            clsArchivoTxt archivo = new clsArchivoTxt();
             Console.BackgroundColor = ConsoleColor.Black;
             Console.ForegroundColor = ConsoleColor.White;
             Console.SetCursorPosition(1, 0);

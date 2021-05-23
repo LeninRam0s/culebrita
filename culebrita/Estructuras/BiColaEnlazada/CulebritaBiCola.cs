@@ -166,7 +166,7 @@ namespace culebrita.clases.BicolaEnlazada
 
         private static void MuestraPunteoK(int punteo, int vidas)
         {
-            Archivo archivo = new Archivo();
+            clsArchivoTxt archivo = new clsArchivoTxt();
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(1, 0);
