@@ -1,23 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
 
-
 namespace culebrita.clases.BicolaEnlazada
 {
-
     class CulebritaBiCola
     {
-        private int vidas = 3;
-        private int punteo = 0;
         internal enum Direction
         {
             Abajo, Izquierda, Derecha, Arriba
         }
-
 
         private static void DibujaPantalla(Size size)
         {
@@ -98,31 +91,31 @@ namespace culebrita.clases.BicolaEnlazada
         }
 
         private static bool MoverLaCulebrita(BiCola culebra, Point posiciónObjetivo,
-            int longitudCulebra, Size screenSize)
+                                             int longitudCulebra, Size screenSize)
            
         {
             var lastPoint = (Point) culebra.finalBicola();//IMPLEMENTACION DE ESTRUCTURA BICOLA
 
             if (lastPoint.Equals(posiciónObjetivo)) return true;
 
-            if (culebra.Any(posiciónObjetivo)) return false;///////////////////
+            if (culebra.Any(posiciónObjetivo)) return false;//
            
 
             if (posiciónObjetivo.X < 0 || posiciónObjetivo.X >= screenSize.Width
-                    || posiciónObjetivo.Y < 0 || posiciónObjetivo.Y >= screenSize.Height)
+               || posiciónObjetivo.Y < 0 || posiciónObjetivo.Y >= screenSize.Height)
             {
                 return false;
             }
 
             Console.BackgroundColor = ConsoleColor.Gray;//COLOR CUERPO
             Console.SetCursorPosition(lastPoint.X + 1, lastPoint.Y + 1);
-            Console.WriteLine(" ");
+            Console.WriteLine("X");//DISEÑO DEL CUERPO
 
             culebra.insertarFinalBiCola(posiciónObjetivo);//COLOCAR LA COMIDA AL FINAL DE BICOLA
 
             Console.BackgroundColor = ConsoleColor.Red; //COLOR CABEZA
             Console.SetCursorPosition(posiciónObjetivo.X + 1, posiciónObjetivo.Y + 1);
-            Console.Write(" ");
+            Console.Write("0");//DISEÑO DE LA CABEZA
 
             if (culebra.elementosBicola() > longitudCulebra)//CUENTA LOS ELEMENTOS DE LA BICOLA
             {
@@ -134,12 +127,10 @@ namespace culebrita.clases.BicolaEnlazada
             return true;
         }
 
-        private static Point MostrarComida(Size screenSize, BiCola culebra)
+        private static Point MostrarComida(Size screenSize, BiCola culebra)///**//
         {
-            
             var lugarComida = Point.Empty;
-
-            var cabezaCulebra = (Point) culebra.finalBicola();//DEVUELVE FINAL DE LA BICOLA CON EL ULTIMO DATO
+            var cabezaCulebra = (Point) culebra.frenteBiCola();//DEVUELVE FINAL DE LA BICOLA CON EL ULTIMO DATO
             var coordenada = cabezaCulebra.X;//
 
             var rnd = new Random();
@@ -157,14 +148,17 @@ namespace culebrita.clases.BicolaEnlazada
 
             } while (lugarComida == Point.Empty);
 
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = ConsoleColor.Green;//COLOR COMIDA
             Console.SetCursorPosition(lugarComida.X + 1, lugarComida.Y + 1);
-            Console.Write(" ");
+            Console.Write(" ");//DISEÑO COMIDA 
 
             return lugarComida;
         }
 
-        private static void MuestraPunteoK(int punteo, int vidas)
+        private int vidas = 5;
+        private int punteo = 0;
+
+        private static void imprimirPunteo(int punteo, int vidas)
         {
             clsArchivoTxt archivo = new clsArchivoTxt();
             Console.BackgroundColor = ConsoleColor.DarkCyan;
@@ -174,20 +168,9 @@ namespace culebrita.clases.BicolaEnlazada
             Console.SetCursorPosition(25, 0);
             Console.Write($"Máximo: {archivo.mejorPunteo(punteo)}");
             Console.SetCursorPosition(40, 0);
-            
-            switch (vidas)
-            {
-                case 1:
-                    Console.Write($"Vida: {(char)3}");
-                    break;
-                case 2:
-                    Console.Write($"Vida: {(char)3} {(char)3} ");
-                    break;
-                case 3:
-                    Console.Write($"Vida: {(char)3} {(char)3} {(char)3}");
-                    break;
-            }
+            Console.Write($"Vidas: {vidas}");
         }
+
         public void jugarConIntentos()
         {
             var velocidad = 80; //VELOCIDAD DE LA CULEBRITA
@@ -200,7 +183,7 @@ namespace culebrita.clases.BicolaEnlazada
             var dirección = Direction.Derecha; //DIRECCION DE SALIDA
 
             DibujaPantalla(tamañoPantalla);
-            MuestraPunteoK(punteo, vidas);
+            imprimirPunteo(punteo, vidas);
 
             while (vidas != 0)
             {
@@ -217,11 +200,11 @@ namespace culebrita.clases.BicolaEnlazada
                         posiciónComida = Point.Empty;
                         longitudCulebra++; //SE INCREMENTA EL TAMA;O DE 1 EN 1
                         punteo += 10; //CADA COMIDA AUMENTA 10 EL PUNTEO
-                        MuestraPunteoK(punteo, vidas);
-                        velocidad -= 10;
+                        imprimirPunteo(punteo, vidas);
+                        velocidad -= 5;
                     }
 
-                    if (posiciónComida == Point.Empty) //entender qué hace esta linea
+                    if (posiciónComida == Point.Empty) //CUANDO LA COMIDA ESTA EN UNA POSICION
                     {
                         posiciónComida = MostrarComida(tamañoPantalla, culebrita);
                     }
@@ -230,15 +213,20 @@ namespace culebrita.clases.BicolaEnlazada
                 {
                     vidas--;
                     Console.ResetColor();
-                    Console.SetCursorPosition(tamañoPantalla.Width / 2 - 15, tamañoPantalla.Height / 2);
-                    if (vidas == 0)
+                    if (vidas != 0)
                     {
-                        Console.SetCursorPosition(tamañoPantalla.Width / 2 - 4, tamañoPantalla.Height / 2);
-                        Console.Write($"¡FIN DEL JUEGO!");
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.SetCursorPosition(8, 2);
+                        Console.Write($"\t\tTe quedan {vidas} vidas");
                     }
                     else
                     {
-                        Console.Write($"\t\tTe quedan {vidas} vidas");
+                        //Console.SetCursorPosition(tamañoPantalla.Width / 2 - 4, tamañoPantalla.Height / 2);
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.SetCursorPosition(12, 10);
+                        Console.Write($"¡FIN DEL JUEGO!");
                     }
 
                     Thread.Sleep(2000);
