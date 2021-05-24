@@ -4,7 +4,7 @@ using System.Drawing;
 
 namespace culebrita.clases.BicolaEnlazada
 {
-    class BiCola : ColaLista.ColaListaE
+    class BiCola : ColaListaE
     {
         //INSERTAR FINAL
         public void insertarFinalBiCola(Point elemento)
@@ -70,7 +70,7 @@ namespace culebrita.clases.BicolaEnlazada
         {
             if (colaVacia())
             {
-                throw new Exception("Error porque la cola esta vacía");
+                throw new Exception("ERROR, COLA VACIA");
             }
             return (frente.elemento);
         }

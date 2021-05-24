@@ -6,7 +6,7 @@ namespace culebrita.clases.Pila_Lista
 {
     class PilaLista
     {
-        private static int INICIAL = 19;
+        //private static int INICIAL = 19;
         private int cima;
         private List<Object> listaPila;
 

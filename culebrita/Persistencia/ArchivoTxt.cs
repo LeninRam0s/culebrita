@@ -6,15 +6,18 @@ using System.Text;
 
 namespace culebrita.clases
 {
-    class clsArchivoTxt
+    class ArchivoTxt
     {
-        
+        //VARIABLE
         String path = ValoresIniciales.pathArchivoTxt();
-        
-        public clsArchivoTxt()
+
+        //CONSTRUCTROR
+        public ArchivoTxt()
         {
            
         }
+
+        //METODOS
         public int punteoAnterior()
         {
             TextReader leer = new StreamReader(path);
@@ -23,6 +26,7 @@ namespace culebrita.clases
             return punteo;
             
         }
+
         public int mejorPunteo(int punteoActual)
         {
             if(punteoActual > punteoAnterior())

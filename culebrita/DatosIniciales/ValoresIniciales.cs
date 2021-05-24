@@ -6,7 +6,6 @@ namespace culebrita.DatosIniciales
 {
     class ValoresIniciales
     {
-        
         public static int vidas()
         {
             int x = 5;
@@ -48,9 +47,6 @@ namespace culebrita.DatosIniciales
             string x = @"G:\1.  UNIVERSIDAD 2021\1 PROGRAMACION\PROYECTOSC-SHARP\culebrita\culebrita\culebrita\Persistencia\data.txt";
             return x;
         }
-
-
-
 
     }
 }

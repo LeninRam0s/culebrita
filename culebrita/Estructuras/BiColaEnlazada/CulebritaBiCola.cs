@@ -167,7 +167,7 @@ namespace culebrita.clases.BicolaEnlazada
 
         private static void imprimirPunteo(int punteo, int vidas)
         {
-            clsArchivoTxt archivo = new clsArchivoTxt();
+            ArchivoTxt archivo = new ArchivoTxt();
             Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(1, 0);
