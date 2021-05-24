@@ -1,23 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
-using System.Text;
 
 namespace culebrita.clases.ColaArreglo
 {
-
     class ColaLineal
     {
         protected int fin;
-        private static int MAXTAMQ = 9999;
+        private static int MAXTAMQ = 1000;
         protected int frente;
-
         protected Object[] listaCola;
+        public int tamaño;
 
-        public int tamaño;///////////////
-       
-
-        //Constructor que es el que va a crear la cola
+        //CONSTRUCTOR
         public ColaLineal()
         {
             frente = 0;
@@ -25,70 +19,69 @@ namespace culebrita.clases.ColaArreglo
             listaCola = new object[MAXTAMQ];
         }
 
-
+        //VALIDADORES
+        //COLA VACIA
         public bool colaVacia()
         {
             return frente > fin;
         }
+
+        //COLA LLENA
         public bool colaLlena()
         {
             return fin == MAXTAMQ - 1;
         }
 
-        //Operaciones para trabajar con datos en la cola
-        public void insertar(Object elemento)
+        //METODOS DE COLA
+        public void insertarColaLineal(Object elemento)
         {
             if (!colaLlena())
             {
-               
                 listaCola[++fin] = elemento;
                 tamaño++;
-               
             }
             else
             {
-                throw new Exception("Overflow de la cola");
+                throw new Exception("DESBORDAMIENTO DE LA COLA");
             }
         }
 
-        //Quitar elemento de la cola
-        public Object quitar()
+        //QUITAR ELEMENTO
+        public Object quitarColaLineal()
         {
             if (!colaVacia())
             {
                 tamaño--;
                 return listaCola[frente++];
-                
-
             }
             else
             {
-                throw new Exception("Cola Vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
         }
 
-        //Limpiar toda la cola
-        public void borrarCola()
+        //BORRAR COLA
+        public void borrarColaLineal()
         {
             frente = 0;
             fin = -1;
         }
 
-        //Acceso a la cola
-        public Object frenteCola()
+        //RETORNA FRENTE COLA
+        public Object frenteColalineal()
         {
             if (!colaVacia())
             {
                 tamaño--;
                 return listaCola[frente];
-
             }
             else
             {
-                throw new Exception("Cola Vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
         }
 
+        //RETORNA FINAL COLA
         public Object finalColaLineal()
         {
             if (!colaVacia())
@@ -102,14 +95,17 @@ namespace culebrita.clases.ColaArreglo
 
         }
 
+        //RETORNA EL TAMAÑO DE LA COLA
+        //YA SE ENCUENTRA INSTANCIADA UNA VARIABLE TAMAÑO LA CUAL SE INCREMENTA AL AGREGAR UN ELEMENTO
+        // Y SE DECREMENTA AL QUITAR UN ELEMENTO DE LA COLA
         public int Tamaño()
         {
             int tam;
             tam = tamaño;
             return tamaño;
-
         }
 
+        //EL METODO ANY DETERMINA SI UNA SECUENCIA CONTIENE ELEMENTOS.
         public bool Any(Point x)
         {
             bool encontrado = false;
@@ -125,6 +121,5 @@ namespace culebrita.clases.ColaArreglo
             return encontrado;
         }
 
-
-    }//end class
+    }//FIN DE LA CLASE
 }

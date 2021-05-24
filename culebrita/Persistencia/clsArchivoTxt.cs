@@ -1,4 +1,5 @@
 ﻿using System;
+using culebrita.DatosIniciales;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
@@ -7,8 +8,9 @@ namespace culebrita.clases
 {
     class clsArchivoTxt
     {
-        String path = @"G:\1.  UNIVERSIDAD 2021\1 PROGRAMACION\PROYECTOSC-SHARP\culebrita\culebrita\culebrita\Persistencia\data.txt";
-
+        
+        String path = ValoresIniciales.pathArchivoTxt();
+        
         public clsArchivoTxt()
         {
            

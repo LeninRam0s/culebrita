@@ -8,19 +8,12 @@ namespace culebrita.clases.ColaArreglo
     class ColaCircular
     {
         private static int fin;
-        private static int MAXTAMQ = 999;
+        private static int MAXTAMQ = 1000;
         protected int frente;
         protected Object[] listaCola;
+        public int tamaño;
 
-        public int tamaño;/////////////////////////////////////////
-
-        // avavnza un aposicion
-
-        public int siguiente(int r)
-        {
-            return (r + 1) % MAXTAMQ;
-        }
-
+        //CONSTRUCTOR
         public ColaCircular()
         {
             frente = 0;
@@ -28,8 +21,14 @@ namespace culebrita.clases.ColaArreglo
             listaCola = new object[MAXTAMQ];
         }
 
-        // Validaciones
+        //AVANZA UNA POSICION
+        public int siguiente(int r)
+        {
+            return (r + 1) % MAXTAMQ;
+        }
 
+        //VALIDACIONES
+        //COLA VACIA
         public bool colaVacia()
         {
             return frente == siguiente(fin);
@@ -40,46 +39,48 @@ namespace culebrita.clases.ColaArreglo
             return frente == siguiente(siguiente(fin));
         }
 
-        //operaciones de modificacion de cola
-        public void insertar(Object elemento)
+        //METODOS COLA CIRCULAR
+        //INSERTAR DATO
+        public void insertarFinalCola(Object elemento)
         {
             if (!colaLlena())
             {
                 fin = siguiente(fin);
                 listaCola[fin] = elemento;
-                tamaño++;//////////////////////////////////////////////////////
+                tamaño++;//
             }
             else
             {
-                throw new Exception("Overflow de la cola");
+                throw new Exception("DESBORDAMEINTO DE COLA");
             }
 
 
         }
-        // quitar elemento
+        //QUITAR DATO
         public Object quitar()
         {
             if (!colaVacia())
             {
                 Object tm = listaCola[frente];
                 frente = siguiente(frente);
-                tamaño--;//////////////////////////////////////////
+                tamaño--;//
                 return tm;
             }
             else
             {
-                throw new Exception("Cola vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
         }
 
+        //BORRAR COLA
         public void borrarCola()
         {
             frente = 0;
             fin = MAXTAMQ - 1;
         }
 
-        //obtener el valor de frente
-        public Object frenteCola()
+        //RETORNA VALOR FRENTE DE LA COLA
+        public Object frenteColaCircular()
         {
             if (!colaVacia())
             {
@@ -87,10 +88,11 @@ namespace culebrita.clases.ColaArreglo
             }
             else
             {
-                throw new Exception("Cola vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
         }
 
+        //RETORNA VALOR FINAL DE LA COLA
         public Object finalColaCircular()
         {
             if (!colaVacia())
@@ -99,34 +101,21 @@ namespace culebrita.clases.ColaArreglo
             }
             else
             {
-                throw new Exception("Cola vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
-
         }
 
+        //RETORNA EL TAMAÑO DE LA COLA
+        //YA SE ENCUENTRA INSTANCIADA UNA VARIABLE TAMAÑO LA CUAL SE INCREMENTA AL AGREGAR UN ELEMENTO
+        // Y SE DECREMENTA AL QUITAR UN ELEMENTO DE LA COLA
         public int Tamaño()
         {
             int tam;
             tam = tamaño;
             return tamaño;
-           
         }
 
-
-        /*public bool Any(Point x)
-        {
-            int i = 0, cont = 0;
-            bool flag;
-            while (i <= fin)
-            {
-                Point a = (Point)listaCola[i];
-                flag = ((a.X == x.X) && (a.Y == x.Y));
-                int z = (flag == true) ? cont++ : cont + 0;
-                i++;
-            }
-            return (cont != 0) ? true : false;
-        }*/
-
+        //EL METODO ANY DETERMINA SI UNA SECUENCIA CONTIENE ELEMENTOS.
         public bool Any(Point x)
         {
             bool encontrado = false;
@@ -141,9 +130,5 @@ namespace culebrita.clases.ColaArreglo
             }
             return encontrado;
         }
-
-
-        //
-    }//Fin de la class
+    }//FIN DE LA CLASE
 }
-

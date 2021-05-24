@@ -25,15 +25,15 @@ namespace culebrita.MenuJuego
                         biCola.jugarConIntentos();
                         break;
                     case 2:
-                        SnakeConColaCircular colaCircular = new SnakeConColaCircular();
+                        CulebritaColaCircular colaCircular = new CulebritaColaCircular();
                         colaCircular.jugarConIntentos();
                         break;
                     case 3:
-                        SnakeConColaLineal colaLineal = new SnakeConColaLineal();
+                        CulebritaColaLineal colaLineal = new CulebritaColaLineal();
                         colaLineal.jugarConIntentos();
                         break;
                     case 4:
-                        SnakeColaConLista colaConLista = new SnakeColaConLista();
+                        CulebritaColaLista colaConLista = new CulebritaColaLista();
                         colaConLista.jugarConIntentos();
                         break;
                     case 5:

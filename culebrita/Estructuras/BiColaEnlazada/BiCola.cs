@@ -4,12 +4,12 @@ using System.Drawing;
 
 namespace culebrita.clases.BicolaEnlazada
 {
-    class BiCola : ColaLista.ClsColaLista
+    class BiCola : ColaLista.ColaListaE
     {
         //INSERTAR FINAL
         public void insertarFinalBiCola(Point elemento)
         {
-            insertar(elemento);
+            insertarFinalColaLista(elemento);
         }
 
         //INSERTAR AL FRENTE
@@ -122,7 +122,7 @@ namespace culebrita.clases.BicolaEnlazada
         //BUSCA ELEMENTOS
         public bool Any(Point elemento)
         {
-            return busquda(elemento);
+            return base.Any(elemento);
         }
 
     }//FIN DE LA CLASE

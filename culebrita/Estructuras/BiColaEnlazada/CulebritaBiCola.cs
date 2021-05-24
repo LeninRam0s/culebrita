@@ -1,4 +1,6 @@
-﻿using System;
+﻿using culebrita.clases.ColaArreglo;
+using culebrita.DatosIniciales;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
@@ -14,7 +16,7 @@ namespace culebrita.clases.BicolaEnlazada
 
         private static void DibujaPantalla(Size size)
         {
-            Console.Title = "Culebrita comelona - Bi Cola";
+            Console.Title = "Culebrita Comelona - Bi-Cola";
             Console.WindowHeight = size.Height + 2;
             Console.WindowWidth = size.Width + 2;
             Console.BufferHeight = Console.WindowHeight;
@@ -94,7 +96,7 @@ namespace culebrita.clases.BicolaEnlazada
                                              int longitudCulebra, Size screenSize)
            
         {
-            var lastPoint = (Point) culebra.finalBicola();//IMPLEMENTACION DE ESTRUCTURA BICOLA
+            var lastPoint = (Point) culebra.finalBicola();//IMPLEMENTACION DE ESTRUCTURA
 
             if (lastPoint.Equals(posiciónObjetivo)) return true;
 
@@ -155,8 +157,13 @@ namespace culebrita.clases.BicolaEnlazada
             return lugarComida;
         }
 
-        private int vidas = 5;
-        private int punteo = 0;
+
+        private int vidas = ValoresIniciales.vidas();
+        private int punteo = ValoresIniciales.punteo();
+        private int velocidadInicial = ValoresIniciales.velocidad();
+        private int tamañoInicial = ValoresIniciales.longitud();
+        private int valorComida = ValoresIniciales.valorComida();
+        private int velocidadNivel = ValoresIniciales.velocidadNivel();
 
         private static void imprimirPunteo(int punteo, int vidas)
         {
@@ -173,11 +180,11 @@ namespace culebrita.clases.BicolaEnlazada
 
         public void jugarConIntentos()
         {
-            var velocidad = 80; //VELOCIDAD DE LA CULEBRITA
+            var velocidad = velocidadInicial; //VELOCIDAD DE LA CULEBRITA
             var posiciónComida = Point.Empty;
             var tamañoPantalla = new Size(60, 20); //DIMENSION DE LA PANTALLA
             var culebrita = new BiCola();
-            var longitudCulebra = 5; //LARGO DE LA CULEBRITA
+            var longitudCulebra = tamañoInicial; //LARGO DE LA CULEBRITA
             var posiciónActual = new Point(0, 9); //ENTRADA DE LA CULEBRITA
             culebrita.insertarFinalBiCola(posiciónActual);
             var dirección = Direction.Derecha; //DIRECCION DE SALIDA
@@ -199,9 +206,9 @@ namespace culebrita.clases.BicolaEnlazada
                     {
                         posiciónComida = Point.Empty;
                         longitudCulebra++; //SE INCREMENTA EL TAMA;O DE 1 EN 1
-                        punteo += 10; //CADA COMIDA AUMENTA 10 EL PUNTEO
+                        punteo += valorComida; //CADA COMIDA AUMENTA 10 EL PUNTEO
                         imprimirPunteo(punteo, vidas);
-                        velocidad -= 5;
+                        velocidad -= velocidadNivel;
                     }
 
                     if (posiciónComida == Point.Empty) //CUANDO LA COMIDA ESTA EN UNA POSICION
@@ -229,13 +236,9 @@ namespace culebrita.clases.BicolaEnlazada
                     }
                     Thread.Sleep(2000);
                     Console.ReadKey();
-
                     jugarConIntentos();
                 }
-
             }
         }
     }
 }
-
-

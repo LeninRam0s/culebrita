@@ -4,32 +4,29 @@ using System.Text;
 using System.Drawing;
 using System.Linq;
 using System.Threading;
-
+using culebrita.DatosIniciales;
 
 namespace culebrita.clases.ColaArreglo
 {
-    class SnakeConColaCircular
+    class CulebritaColaLineal
     {
-        private int vidas = 3;
-        private int punteo = 0;
         internal enum Direction
         {
             Abajo, Izquierda, Derecha, Arriba
         }
 
-
         private static void DibujaPantalla(Size size)
         {
-            Console.Title = "Culebrita comelona";
+            Console.Title = "Culebrita Comelona - Cola Lineal";
             Console.WindowHeight = size.Height + 2;
             Console.WindowWidth = size.Width + 2;
             Console.BufferHeight = Console.WindowHeight;
             Console.BufferWidth = Console.WindowWidth;
             Console.CursorVisible = false;
-            Console.BackgroundColor = ConsoleColor.Magenta;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;//COLOR DE BORDE
             Console.Clear();
 
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.Black;//COLOR FONDO
             for (int row = 0; row < size.Height; row++)
             {
                 for (int col = 0; col < size.Width; col++)
@@ -38,6 +35,14 @@ namespace culebrita.clases.ColaArreglo
                     Console.Write(" ");
                 }
             }
+        }
+
+        private static void MuestraPunteo(int punteo)
+        {
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.SetCursorPosition(1, 0);
+            Console.Write($"Puntuacion: {punteo.ToString("00000000")}");
         }
 
         private static Direction ObtieneDireccion(Direction direccionAcutal)
@@ -67,8 +72,6 @@ namespace culebrita.clases.ColaArreglo
             return direccionAcutal;
         }
 
-
-
         private static Point ObtieneSiguienteDireccion(Direction direction, Point currentPosition)
         {
             Point siguienteDireccion = new Point(currentPosition.X, currentPosition.Y);
@@ -90,42 +93,36 @@ namespace culebrita.clases.ColaArreglo
             return siguienteDireccion;
         }
 
-
-
-        private static bool MoverLaCulebrita(ColaCircular culebra, Point posiciónObjetivo,
-            int longitudCulebra, Size screenSize)
+        private static bool MoverLaCulebrita(ColaLineal culebra, Point posiciónObjetivo,
+                                             int longitudCulebra, Size screenSize)
 
         {
-            var lastPoint = (Point)culebra.finalColaCircular();////////////////////////////////////////////////
+            var lastPoint = (Point)culebra.finalColaLineal();//IMPLEMENTACION DE ESTRUCTURA
 
             if (lastPoint.Equals(posiciónObjetivo)) return true;
 
-            //if (culebra.Any(posiciónObjetivo)) return false;
-            if (culebra.Any(posiciónObjetivo))  return false;
+            if (culebra.Any(posiciónObjetivo)) return false;//
 
 
             if (posiciónObjetivo.X < 0 || posiciónObjetivo.X >= screenSize.Width
-                    || posiciónObjetivo.Y < 0 || posiciónObjetivo.Y >= screenSize.Height)
+               || posiciónObjetivo.Y < 0 || posiciónObjetivo.Y >= screenSize.Height)
             {
                 return false;
             }
 
-            Console.BackgroundColor = ConsoleColor.Green;
+            Console.BackgroundColor = ConsoleColor.Gray;//COLOR CUERPO
             Console.SetCursorPosition(lastPoint.X + 1, lastPoint.Y + 1);
-            Console.WriteLine(" ");
+            Console.WriteLine("X");//DISEÑO DEL CUERPO
 
-            culebra.insertar(posiciónObjetivo);
+            culebra.insertarColaLineal(posiciónObjetivo);//COLOCAR LA COMIDA AL FINAL DE BICOLA
 
-            Console.BackgroundColor = ConsoleColor.Red;
+            Console.BackgroundColor = ConsoleColor.Red; //COLOR CABEZA
             Console.SetCursorPosition(posiciónObjetivo.X + 1, posiciónObjetivo.Y + 1);
-            Console.Write(" ");
+            Console.Write("0");//DISEÑO DE LA CABEZA
 
-
-            // Quitar cola
-            if (culebra.Tamaño() > longitudCulebra)//////////////////////////////////////////
+            if (culebra.Tamaño() > longitudCulebra)//CUENTA LOS ELEMENTOS DE LA BICOLA
             {
-
-                var removePoint = (Point)culebra.quitar();////////////////////////////////////////////////
+                var removePoint = (Point)culebra.quitarColaLineal();//QUITA EL ELEMENTO DE BICOLA
                 Console.BackgroundColor = ConsoleColor.Black;
                 Console.SetCursorPosition(removePoint.X + 1, removePoint.Y + 1);
                 Console.Write(" ");
@@ -133,72 +130,69 @@ namespace culebrita.clases.ColaArreglo
             return true;
         }
 
-        private static Point MostrarComida(Size screenSize, ColaCircular culebra)
+
+        private static Point MostrarComida(Size screenSize, ColaLineal culebra)///**//
         {
-
             var lugarComida = Point.Empty;
-
-            var cabezaCulebra = (Point)culebra.finalColaCircular();////////////////////////////////////
-            var coordenada = cabezaCulebra.X;//////////////////////////////////////////////////
+            var cabezaCulebra = (Point)culebra.frenteColalineal();//DEVUELVE FINAL DE LA BICOLA CON EL ULTIMO DATO
+            var coordenada = cabezaCulebra.X;//
 
             var rnd = new Random();
             do
             {
                 var x = rnd.Next(0, screenSize.Width - 1);
                 var y = rnd.Next(0, screenSize.Height - 1);
-                if (culebra.ToString().All(x => coordenada != x || coordenada != y)///////////////
+                if (culebra.ToString().All(x => coordenada != x || coordenada != y)
                     && Math.Abs(x - cabezaCulebra.X) + Math.Abs(y - cabezaCulebra.Y) > 8)
                 {
                     lugarComida = new Point(x, y);
-                    Console.Beep(659, 125); Console.Beep(659, 125);
-
+                    Console.Beep(659, 125);
+                    Console.Beep(659, 125);
                 }
 
             } while (lugarComida == Point.Empty);
 
-            Console.BackgroundColor = ConsoleColor.Blue;
+            Console.BackgroundColor = ConsoleColor.Green;//COLOR COMIDA
             Console.SetCursorPosition(lugarComida.X + 1, lugarComida.Y + 1);
-            Console.Write(" ");
+            Console.Write(" ");//DISEÑO COMIDA 
 
             return lugarComida;
         }
-        private static void MuestraPunteoK(int punteo, int vidas)
-        {
 
+
+        private int vidas = ValoresIniciales.vidas();
+        private int punteo = ValoresIniciales.punteo();
+        private int velocidadInicial = ValoresIniciales.velocidad();
+        private int tamañoInicial = ValoresIniciales.longitud();
+        private int valorComida = ValoresIniciales.valorComida();
+        private int velocidadNivel = ValoresIniciales.velocidadNivel();
+
+        private static void imprimirPunteo(int punteo, int vidas)
+        {
             clsArchivoTxt archivo = new clsArchivoTxt();
-            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.BackgroundColor = ConsoleColor.DarkCyan;
             Console.ForegroundColor = ConsoleColor.Black;
             Console.SetCursorPosition(1, 0);
             Console.Write($"Puntuacion: {punteo.ToString("00000000")}");
             Console.SetCursorPosition(25, 0);
             Console.Write($"Máximo: {archivo.mejorPunteo(punteo)}");
             Console.SetCursorPosition(40, 0);
-            switch (vidas)
-            {
-                case 1:
-                    Console.Write($"{(char)3} ");
-                    break;
-                case 2:
-                    Console.Write($"{(char)3} {(char)3} ");
-                    break;
-                case 3:
-                    Console.Write($"{(char)3} {(char)3} {(char)3}");
-                    break;
-            }
+            Console.Write($"Vidas: {vidas}");
         }
+
         public void jugarConIntentos()
         {
-            var velocidad = 100; //modificar estos valores y ver qué pasa
+            var velocidad = velocidadInicial; //VELOCIDAD DE LA CULEBRITA
             var posiciónComida = Point.Empty;
-            var tamañoPantalla = new Size(60, 20);
-            var culebrita = new ColaCircular();
-            var longitudCulebra = 10; //modificar estos valores y ver qué pasa
-            var posiciónActual = new Point(0, 9); //modificar estos valores y ver qué pasa
-            culebrita.insertar(posiciónActual);
-            var dirección = Direction.Derecha; //modificar estos valores y ver qué pasa
+            var tamañoPantalla = new Size(60, 20); //DIMENSION DE LA PANTALLA
+            var culebrita = new ColaLineal();
+            var longitudCulebra = tamañoInicial; //LARGO DE LA CULEBRITA
+            var posiciónActual = new Point(0, 9); //ENTRADA DE LA CULEBRITA
+            culebrita.insertarColaLineal(posiciónActual);
+            var dirección = Direction.Derecha; //DIRECCION DE SALIDA
 
             DibujaPantalla(tamañoPantalla);
-            MuestraPunteoK(punteo, vidas);
+            imprimirPunteo(punteo, vidas);
 
             while (vidas != 0)
             {
@@ -213,13 +207,13 @@ namespace culebrita.clases.ColaArreglo
                     if (posiciónActual.Equals(posiciónComida))
                     {
                         posiciónComida = Point.Empty;
-                        longitudCulebra++; //modificar estos valores y ver qué pasa
-                        punteo += 10; //modificar estos valores y ver qué pasa
-                        MuestraPunteoK(punteo, vidas);
-                        velocidad -= 10;
+                        longitudCulebra++; //SE INCREMENTA EL TAMA;O DE 1 EN 1
+                        punteo += valorComida; //CADA COMIDA AUMENTA 10 EL PUNTEO
+                        imprimirPunteo(punteo, vidas);
+                        velocidad -= velocidadNivel;
                     }
 
-                    if (posiciónComida == Point.Empty) //entender qué hace esta linea
+                    if (posiciónComida == Point.Empty) //CUANDO LA COMIDA ESTA EN UNA POSICION
                     {
                         posiciónComida = MostrarComida(tamañoPantalla, culebrita);
                     }
@@ -228,32 +222,25 @@ namespace culebrita.clases.ColaArreglo
                 {
                     vidas--;
                     Console.ResetColor();
-                    Console.SetCursorPosition(tamañoPantalla.Width / 2 - 15, tamañoPantalla.Height / 2);
-                    if (vidas == 0)
+                    if (vidas != 0)
                     {
-                        Console.SetCursorPosition(tamañoPantalla.Width / 2 - 4, tamañoPantalla.Height / 2);
-                        Console.Write($"¡GAME OVER!");
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                        Console.SetCursorPosition(8, 2);
+                        Console.Write($"\t\tTe quedan {vidas} vidas");
                     }
                     else
                     {
-                        Console.Write($"Haz perdido una vida, te quedan {vidas}");
+                        Console.BackgroundColor = ConsoleColor.Black;
+                        Console.ForegroundColor = ConsoleColor.DarkYellow;
+                        Console.SetCursorPosition(12, 10);
+                        Console.Write($"¡FIN DEL JUEGO!\tPuntaje Optenido: {punteo}");
                     }
-
                     Thread.Sleep(2000);
                     Console.ReadKey();
-
                     jugarConIntentos();
                 }
-
             }
-
-
-
         }
-
-
     }
 }
-
-
-
