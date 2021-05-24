@@ -132,7 +132,7 @@ namespace culebrita.clases.BicolaEnlazada
         private static Point MostrarComida(Size screenSize, BiCola culebra)///**//
         {
             var lugarComida = Point.Empty;
-            var cabezaCulebra = (Point) culebra.frenteBiCola();//DEVUELVE FINAL DE LA BICOLA CON EL ULTIMO DATO
+            var cabezaCulebra = (Point) culebra.frenteBiCola();//DEVUELVE FRENTE DE LA BICOLA CON EL DATO
             var coordenada = cabezaCulebra.X;//
 
             var rnd = new Random();

@@ -28,7 +28,7 @@ namespace culebrita.clases.BicolaEnlazada
             }
         }
 
-        //QUITAR ELEMENTO AL FRENTE
+        //QUITAR ELEMENTO AL FRENTE H
         public Object quitarFrente()
         {
             return quitar();
@@ -120,6 +120,7 @@ namespace culebrita.clases.BicolaEnlazada
         }
 
         //BUSCA ELEMENTOS
+        //EL METODO ANY DETERMINA SI UNA SECUENCIA CONTIENE ELEMENTOS.
         public bool Any(Point elemento)
         {
             return base.Any(elemento);

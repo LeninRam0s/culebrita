@@ -90,9 +90,8 @@ namespace culebrita.clases.ColaArreglo
             }
             else
             {
-                throw new Exception("Cola vacia");
+                throw new Exception("ERROR, COLA VACIA");
             }
-
         }
 
         //RETORNA EL TAMAÑO DE LA COLA
